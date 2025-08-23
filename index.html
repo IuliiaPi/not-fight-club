@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>not-fight-club</title>
-    <meta name="description" content="not-fight-club">
-    <meta name="keywords" content="not-fight-club, Iuliia Pidlisna">
+    <title>Not a Fight Club</title>
+    <meta name="description" content="Not a Fight Club">
+    <meta name="keywords" content="Not a Fight Club, game, Iuliia Pidlisna">
     <meta name="author" content="Iuliia Pidlisna">
     <link rel="shortcut icon" href="./assets/favicon.ico">
     <link rel="stylesheet" href="./css/style.css">
@@ -15,19 +15,47 @@
 </head>
 
 <body class="page">
+    <div class="page__shadow"></div>
     <div class="page__container">
         <div class="modal-registration">
             <div class="modal-registration__container">
                 <div class="modal-registration__content">
-                    <h1 class="modal-registration__title">Create Your Character</h1>
+
+                    <div class="game-title">Not a Fight Club</div>
+                    <h2 class="modal-registration__title">Create Your Character</h2>
                     <form class="modal-registration__form" action="#">
                         <label class="modal-registration__label" for="name">Character Name</label>
                         <input class="modal-registration__input" type="text" id="name" name="name">
                         <input class="modal-registration__button" type="submit" value="Create Character">
                     </form>
                     <!-- <button class="modal-registration__button">Create Character</button> -->
+                    <div class="game-title">Not a Fight Club</div>
                 </div>
             </div>
+        </div>
+        <div class="game-page">
+            <header class="header">
+                <div class="header__container">
+                    <div class="header__content">
+                        <h1 class="header__title">Home</h1>
+                        <ul class="list-icons">
+                            <li class="item-icon icon-home"><img class="icon-home" width="24" height="24" alt="home"
+                                    src="./assets/svg/home.svg"></li>
+                            <li class="item-icon icon-character"><img class="img-icon-character" width="24" height="24"
+                                    alt="character" src="./assets/svg/icon_profile.svg"></li>
+                            <li class="item-icon icon-settings"><img class="icon-settings" width="24" height="24"
+                                    alt="settings" src="./assets/svg/setting.svg"></li>
+                        </ul>
+                    </div>
+                </div>
+            </header>
+            <main class="main">
+                <div class="main__container">
+                    <div class="main__content">
+                        <!-- <button class="button-fight">Fight!</button> -->
+                    </div>
+                </div>
+            </main>
         </div>
     </div>
 </body>
