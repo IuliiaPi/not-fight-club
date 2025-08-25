@@ -34,10 +34,34 @@ const CssClasses = {
     INPUT_PLAYER_NAME: 'input-player-name',
     BUTTON_EDIT_PLAYER_NAME: 'button-edit-player-name',
 
+    BATTLE_PAGE: 'battle-page',
+    FIGHTER: 'fighter',
+    LINE_LIFE: 'line-life',
+    COUNTER_LIFE: 'counter-life',
+    CURRENT_LIFES: 'current-lifes',
+    DIVIDER_LIFES: 'divider-lifes',
+    MAX_LIFES: 'max-lifes',
+    PICK_ZONES: 'pick-zones',
+    PICK_ZONES_TITLE: 'pick-zones__title',
+    PICK_ZONES_ZONES: 'pick-zones__zones',
+    ZONE: 'zone',
+    DIVIDER_ZONES: 'divider-zones',
+    ZONE_TITLE: 'zone__title',
+    ZONE_LIST: 'zone__list',
+    DEFENCE_ZONE_LIST: 'defence-zone__list',
+    ZONE_LIST_ITEM: 'zone__list-item',
+
+    LABEL_ZONE_NAME: 'label-zone-name',
+
+    PICK_ZONES_BUTTON: 'pick-zones__button',
+
+
+
     POPUP_GAME_OVER: 'popup-game-over',
 }
 
 import cardsJSON from "../cards.js";
+import listZonesJSON from "../listZones.js";
 console.log(cardsJSON);
 
 const gamePage = document.querySelector('.game-page');
@@ -54,7 +78,11 @@ const iconCharacter = document.querySelector('.icon-character');
 const iconSettings = document.querySelector('.icon-settings');
 
 const mainContent = document.querySelector('.main__content');
-const buttonFight = document.querySelector('.button-fight');
+// const buttonFight = document.querySelector('.button-fight');
+let characterImage = document.querySelector('.character-image');
+// let characterImage;
+// let a = characterImage.src;
+// characterImage.src = './assets/img/character/1.webp';
 
 // setLocalStorage 
 function setLocalStorage() {
@@ -76,6 +104,8 @@ iconHome.addEventListener('click', openHomePage);
 iconCharacter.addEventListener('click', openCharacterPage);
 iconSettings.addEventListener('click', openSettingsPage);
 
+// buttonFight.addEventListener('click', openBattle);
+
 function openHomePage() {
     modalRegistration.classList.add(CssClasses.DISPLAY_NONE);
     gamePage.classList.add(CssClasses.DISPLAY);
@@ -83,11 +113,9 @@ function openHomePage() {
     createHomePage();
 }
 
-// buttonFight.addEventListener('click', openBattle);
-
 function openBattle() {
-     headerTitle.textContent = 'Battle';
-      createBattlePage();
+    headerTitle.textContent = 'Battle';
+    createBattlePage();
 }
 
 function openCharacterPage() {
@@ -104,13 +132,122 @@ function openSettingsPage() {
 
 function createBattlePage(page) {
     mainContent.textContent = '';
-    const component = createElement('div', CssClasses.HOME_PAGE);
+    const component = createElement('div', CssClasses.BATTLE_PAGE);
 
-    const buttonFight = createElement('button', CssClasses.BUTTON_FIGHT);
-    buttonFight.textContent = '!';
+    // character 
+    const character = createElement('div', CssClasses.FIGHTER);
 
-    component.append(buttonFight);
+    const characterName = createElement('p', CssClasses.CHARACTER_NAME);
+    characterName.textContent = modalRegistrationInput.value;
 
+    characterImage = createElement('img', CssClasses.CHARACTER_IMAGE);
+    characterImage.alt = 'character';
+    characterImage.width = 350;
+    characterImage.height = 500;
+    characterImage.src = './assets/img/character/1.webp';
+
+    const characterLineLife = createElement('div', CssClasses.LINE_LIFE);
+    const characterCounterLife = createElement('div', CssClasses.COUNTER_LIFE);
+    const characterCurrentLifes = createElement('p', CssClasses.CURRENT_LIFES);
+    characterCurrentLifes.textContent = `100`;
+    const characterDividerLifes = createElement('p', CssClasses.DIVIDER_LIFES);
+    characterDividerLifes.textContent = `|`;
+    const characterMaxLifes = createElement('p', CssClasses.MAX_LIFES);
+    characterMaxLifes.textContent = `100`;
+
+    characterCounterLife.append(characterCurrentLifes, characterDividerLifes, characterMaxLifes);
+    character.append(characterName, characterImage, characterLineLife, characterCounterLife);
+
+    // pick zones 
+    const pickZones = createElement('div', CssClasses.PICK_ZONES);
+    const pickZonesTitle = createElement('h2', CssClasses.PICK_ZONES_TITLE);
+    pickZonesTitle.textContent = `Please pick 1 Attack zone and 2 Defence zones`;
+    const pickZonesZones = createElement('div', CssClasses.PICK_ZONES_ZONES);
+    const attackZone = createElement('div', CssClasses.ZONE);
+    const attackZoneTitle = createElement('h3', CssClasses.ZONE_TITLE);
+    attackZoneTitle.textContent = `Attack Zones`;
+    const attackZoneList = createElement('ul', CssClasses.ZONE_LIST);
+
+    listZonesJSON.forEach((zones) => {
+        const zone = createElement('li', CssClasses.ZONE_LIST_ITEM);
+        attackZoneList.append(zone);
+
+        const labelZoneName = createElement('label', CssClasses.LABEL_ZONE_NAME);
+        labelZoneName.setAttribute('for', 'head');
+        labelZoneName.textContent = `${zones.name}`;
+
+        const inputZoneName = createElement('input', CssClasses.INPUT_ZONE_NAME);
+        inputZoneName.setAttribute('type', 'radio');
+        inputZoneName.setAttribute('id', 'head');
+        inputZoneName.setAttribute('name', 'attack_zone');
+        inputZoneName.value = `${zones.name}`;
+
+        zone.append(labelZoneName, inputZoneName);
+    });
+
+
+
+    attackZone.append(attackZoneTitle, attackZoneList);
+
+    const dividerZones = createElement('div', CssClasses.DIVIDER_ZONES);
+
+    const defenceZone = createElement('div', CssClasses.ZONE);
+
+    const defenceZoneTitle = createElement('h3', CssClasses.ZONE_TITLE);
+    defenceZoneTitle.textContent = `Defence Zones`;
+    const defenceZoneList = createElement('ul', CssClasses.DEFENCE_ZONE_LIST);
+
+    listZonesJSON.forEach((zones) => {
+        const zone = createElement('li', CssClasses.ZONE_LIST_ITEM);
+        defenceZoneList.append(zone);
+
+        const labelZoneName = createElement('label', CssClasses.LABEL_ZONE_NAME);
+        labelZoneName.setAttribute('for', 'head');
+        labelZoneName.textContent = `${zones.name}`;
+
+        const inputZoneName = createElement('input', CssClasses.INPUT_ZONE_NAME);
+        inputZoneName.setAttribute('type', 'checkbox');
+        inputZoneName.setAttribute('id', 'head');
+        inputZoneName.setAttribute('name', 'defence_zone');
+        inputZoneName.value = `${zones.name}`;
+
+        zone.append(inputZoneName, labelZoneName);
+    });
+
+    defenceZone.append(defenceZoneTitle, defenceZoneList);
+
+    pickZonesZones.append(attackZone, dividerZones, defenceZone);
+
+    const pickZonesButton = createElement('button', CssClasses.PICK_ZONES_BUTTON);
+    pickZonesButton.textContent = `Attack!`;
+
+    pickZones.append(pickZonesTitle, pickZonesZones, pickZonesButton);
+
+    // fighter 
+    const fighter = createElement('div', CssClasses.FIGHTER);
+
+    const fighterName = createElement('p', CssClasses.CHARACTER_NAME);
+    fighterName.textContent = 'fighter';
+
+    const fighterImage = createElement('img', CssClasses.CHARACTER_IMAGE);
+    fighterImage.alt = 'fighter';
+    fighterImage.width = 350;
+    fighterImage.height = 500;
+    fighterImage.src = './assets/img/fighter/1.webp';
+
+    const fighterLineLife = createElement('div', CssClasses.LINE_LIFE);
+    const fighterCounterLife = createElement('div', CssClasses.COUNTER_LIFE);
+    const fighterCurrentLifes = createElement('p', CssClasses.CURRENT_LIFES);
+    fighterCurrentLifes.textContent = `100`;
+    const fighterDividerLifes = createElement('p', CssClasses.DIVIDER_LIFES);
+    fighterDividerLifes.textContent = `|`;
+    const fighterMaxLifes = createElement('p', CssClasses.MAX_LIFES);
+    fighterMaxLifes.textContent = `100`;
+
+    fighterCounterLife.append(fighterCurrentLifes, fighterDividerLifes, fighterMaxLifes);
+    fighter.append(fighterName, fighterImage, fighterLineLife, fighterCounterLife);
+
+    component.append(character, pickZones, fighter);
     //     return component;
     mainContent.append(component);
 }
@@ -126,6 +263,8 @@ function createHomePage(page) {
 
     //     return component;
     mainContent.append(component);
+
+    buttonFight.addEventListener('click', openBattle);
 }
 
 function createCharacterePage(cardsJSON) {
@@ -211,7 +350,7 @@ function createElement(tagName, className) {
 
 // export { createComponent };
 
-// modal Characters
+// // modal Characters
 
 const MODAL_CHARACTERS = createElement('div', CssClasses.MODAL_CHARACTERS);
 document.body.append(MODAL_CHARACTERS);
@@ -236,11 +375,14 @@ cardsJSON.forEach((character) => {
     image.src = character.image;
     card.append(image);
 
-    card.addEventListener('click', changeCharacter);
-
+    // image.forEach((c) => {
+    // c.addEventListener('click', changeCharacter);
+    // });
     function changeCharacter() {
         console.log(image.src);
-        characterImage.src =  image.src ;
+        // characterImages.append(image);
+        image.height = 100;
+        characterImage.src = character.image;
     }
 });
 
