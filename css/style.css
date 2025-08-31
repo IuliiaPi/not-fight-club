@@ -117,7 +117,7 @@ html {
 }
 
 .modal-registration__input {
-    margin-bottom: 50px;
+    /* margin-bottom: 50px; */
     padding: 10px 15px;
     font-size: 26px;
     border: solid 2px var(--border-input-color);
@@ -133,13 +133,17 @@ html {
     transition: all 0.3 ease;
 }
 
-@media (hover: hover) {
+/* @media (hover: hover) {
 
-    .modal-registration__button:hover {
+    .modal-registration__button:not(:disabled):hover {
         cursor: pointer;
         opacity: 0.7;
     }
 
+} */
+
+._disable {
+    /* cursor: not-allowed; */
 }
 
 .modal-registration__button:active {
@@ -474,10 +478,26 @@ html {
 }
 
 .line-life {
+    position: relative;
     width: 100%;
-    height: 12px;
+    height: 17px;
+    border-radius: 10px;
+    border: solid 1px rgb(128, 46, 46);
+    background-color: #7a7575;
+}
+
+.line-life_red {
+    position: absolute;
+    top: 1;
+    width: 100%;
+    height: 15px;
     border-radius: 10px;
     background-color: #cc2727;
+}
+
+._lifes {
+    width: 80%;
+    border-radius: 10px 0px 0px 10px;
 }
 
 .counter-life {
@@ -589,4 +609,58 @@ html {
 /* popup-game-over  */
 .popup-game-over {
     display: none;
+    position: fixed;
+    top: 100px;
+    left: 300px;
+    z-index: 3;
+    transition: all 0.3s ease;
+}
+
+._display {
+    display: block;
+}
+
+.popup-game-over__container {
+    margin: 20px;
+    padding: 80px 100px;
+    border: solid 2px rgb(118, 70, 70);
+    border-radius: 14px;
+    background-color: #e8e5e5;
+}
+
+.popup-game-over__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-game-over__title {
+    font-size: 36px;
+    margin-bottom: 80px;
+}
+
+.popup-game-over__button {
+    padding: 20px 50px;
+    font-size: 28px;
+    border: solid 2px var(--border-button-color);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+@media (hover: hover) {
+
+    .popup-game-over__button:hover {
+        cursor: pointer;
+        opacity: 0.7;
+        text-shadow: 0 0 3px #a9a5a5;
+    }
+
+}
+
+.popup-game-over__button:active {
+    opacity: 1;
+    border-radius: 12px;
+    background-color: transparent;
+    text-shadow: 0 0 3px #a9a5a5;
 }
