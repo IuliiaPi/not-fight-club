@@ -1,6 +1,6 @@
 const listZonesJSON = [
   {
-    name: 'header',
+    name: 'head',
 },
   {
     name: 'neck',
