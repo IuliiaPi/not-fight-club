@@ -155,6 +155,11 @@ function openSettingsPage() {
     createSettingsPage();
 }
 
+const characterLosesNumber = document.getElementsByClassName(CssClasses.CHARACTER_LOSES_NUMBER);
+// characterLosesNumber.textContent = '8';
+const characterWinsNumber = document.getElementsByClassName(CssClasses.CHARACTER_WINS_NUMBER);
+console.log(characterLosesNumber);
+
 function createBattlePage(page) {
     mainContent.textContent = '';
     const component = createElement('div', CssClasses.BATTLE_PAGE);
@@ -295,9 +300,7 @@ function createBattlePage(page) {
         //         }
         //     });
         const radios = document.getElementsByName('attack_zone');
-        const characterLosesNumber = document.getElementsByClassName(CssClasses.CHARACTER_LOSES_NUMBER);
-        console.log(radios);
-        console.log(characterLosesNumber);
+
         radios.forEach(radio => {
             if (radio.checked && radio.id === 'head') {
                 characterCurrentLifes.textContent = `${Number(characterCurrentLifes.textContent) - 30}`;
@@ -306,9 +309,9 @@ function createBattlePage(page) {
                 fighterLineLifeRed.classList.add(CssClasses.LIFES);
             } else
                 if (radio.checked && radio.id === 'neck') {
-                    characterCurrentLifes.textContent = `${Number(characterCurrentLifes.textContent) - 10}`;
+                    characterCurrentLifes.textContent = `${Number(characterCurrentLifes.textContent) - 0}`;
                     characterLineLifeRed.classList.add(CssClasses.LIFES);
-                    fighterCurrentLifes.textContent = `${Number(fighterCurrentLifes.textContent) - 0}`;
+                    fighterCurrentLifes.textContent = `${Number(fighterCurrentLifes.textContent) - 30}`;
                     fighterLineLifeRed.classList.add(CssClasses.LIFES);
                 } else
                     if (radio.checked && radio.id === 'body') {
@@ -331,14 +334,22 @@ function createBattlePage(page) {
                             } else
                                 if (characterCurrentLifes.textContent <= 0) {
                                     characterCurrentLifes.textContent = `0`;
+                                    characterLineLifeRed.classList.remove(CssClasses.LINE_LIFE_RED);
                                     characterLineLifeRed.classList.remove(CssClasses.LIFES);
                                     openPopupGameOver();
+                                    popupSubtitle.textContent = 'You are lose :(';
+                                    characterLosesNumber.textContent = '1';
+                                    console.log(characterLosesNumber);
                                     // characterLosesNumber.textContent = Number(characterLosesNumber.textContent) + 1;
                                 } else
                                     if (fighterCurrentLifes.textContent <= 0) {
                                         fighterCurrentLifes.textContent = '0';
+                                        fighterLineLifeRed.classList.remove(CssClasses.LINE_LIFE_RED);
                                         fighterLineLifeRed.classList.remove(CssClasses.LIFES);
                                         openPopupGameOver();
+                                        popupSubtitle.textContent = 'You are win :)';
+                                        characterWinsNumber.textContent = '1';
+
                                     }
         });
     }
@@ -605,12 +616,12 @@ charactersJSON.forEach((character) => {
     // c.addEventListener('click', changeCharacter);
     // });
     function changeCharacter() {
-        let x = characterImage1.src;
+        // let x = characterImage1.src;
         console.log(image.src);
         // characterImages.append(image);
-        image.height = 100;
-        characterImage1.height = 100;
-        characterImage1.src = character.image;
+        // image.height = 100;
+        // characterImage1.height = 100;
+        // characterImage1.src = character.image;
 
         console.log(characterImage1.src);
         console.log(character.image);
