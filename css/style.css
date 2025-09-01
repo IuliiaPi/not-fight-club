@@ -605,7 +605,6 @@ html {
     /* background-color: #cbcad6; */
 }
 
-
 /* popup-game-over  */
 .popup-game-over {
     display: none;
@@ -622,7 +621,7 @@ html {
 
 .popup-game-over__container {
     margin: 20px;
-    padding: 80px 100px;
+    padding: 80px 120px;
     border: solid 2px rgb(118, 70, 70);
     border-radius: 14px;
     background-color: #e8e5e5;
@@ -633,11 +632,16 @@ html {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 40px;
 }
 
 .popup-game-over__title {
     font-size: 36px;
-    margin-bottom: 80px;
+}
+
+.popup-game-over__subtitle {
+    font-size: 30px;
+    text-shadow: 0 0 3px #a9a5a5;
 }
 
 .popup-game-over__button {
